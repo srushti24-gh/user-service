@@ -1,16 +1,27 @@
 pipeline {
     agent any
+    environment {
+        ENABLE_FEATURE_X = 'true'  // or pull from `.env` or repo file
+    }
     stages {
         stage('Build') {
             steps {
-                echo "Building from feature branch: ${env.BRANCH_NAME}"
+                echo "Compiling Java..."
                 bat 'javac app.java'
             }
         }
-        stage('Test') {
+        stage('Run') {
             steps {
-                echo "Running feature branch tests..."
-                bat 'echo Simulating feature testing...'
+                echo "Running App..."
+                bat 'java app'
+            }
+        }
+        stage('Feature Toggle') {
+            when {
+                expression { return env.ENABLE_FEATURE_X == 'true' }
+            }
+            steps {
+                echo '✅ Feature X is ENABLED – Running feature-specific code...'
             }
         }
     }
