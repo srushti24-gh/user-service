@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Feature Toggle') {
             when {
-                expression { return env.ENABLE_FEATURE_X == 'true' }
+                expression { return env.ENABLE_FEATURE_X == 'false' }
             }
             steps {
                 echo '✅ Feature X is ENABLED – Running feature-specific code...'
