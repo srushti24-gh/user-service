@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building from master branch..."
-                bat 'python app.py'
+                bat 'python app.java'
             }
         }
         stage('Test') {
