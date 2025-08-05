@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building from feature branch: ${env.BRANCH_NAME}"
-                bat 'python app.java'
+                bat 'javac app.java'
             }
         }
         stage('Test') {
